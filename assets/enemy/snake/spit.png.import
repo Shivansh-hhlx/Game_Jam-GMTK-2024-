@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr8yv6c5cvr4m"
-path="res://.godot/imported/Sprite-0007.png-a4ff32e3d1a6f6bafdff31960ec539fb.ctex"
+uid="uid://bhl2xnh5bu2ak"
+path="res://.godot/imported/spit.png-c76e2ea21f1b3d90692d44d3915eb777.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemy/snake/Sprite-0007.png"
-dest_files=["res://.godot/imported/Sprite-0007.png-a4ff32e3d1a6f6bafdff31960ec539fb.ctex"]
+source_file="res://assets/enemy/snake/spit.png"
+dest_files=["res://.godot/imported/spit.png-c76e2ea21f1b3d90692d44d3915eb777.ctex"]
 
 [params]
 
