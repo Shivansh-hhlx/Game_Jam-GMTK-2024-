@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://4yjgu5uqlygl"]
+
+[ext_resource type="PackedScene" uid="uid://bntu7ghv7w3qo" path="res://player/character.tscn" id="1_bej7t"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cavdx"]
+distance = -129.0
+
+[node name="Level" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Character" parent="." instance=ExtResource("1_bej7t")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_cavdx")

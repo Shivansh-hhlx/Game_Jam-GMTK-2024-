@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://4acr1a2c5lox"]
+
+[ext_resource type="Texture2D" uid="uid://bev1378ikerin" path="res://assets/knight.png" id="1_kqu33"]
+[ext_resource type="Script" path="res://enemy/elephant_boss.gd" id="1_yn6f4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l6k3h"]
+radius = 36.0
+
+[node name="ElephantBoss" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_yn6f4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -49)
+scale = Vector2(5.92969, 5.92969)
+texture = ExtResource("1_kqu33")
+hframes = 8
+vframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -18)
+shape = SubResource("CircleShape2D_l6k3h")
