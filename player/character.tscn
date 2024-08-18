@@ -169,6 +169,7 @@ sprite_frames = SubResource("SpriteFrames_qiu57")
 animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_eqnck")
 
 [node name="Markers" type="Node2D" parent="."]
