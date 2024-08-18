@@ -10,16 +10,17 @@ func _process(delta):
 		velocity.y = 0
 	else:
 		velocity.y += 1000 * delta
+		$AnimatedSprite2D.play("falling")
 		
 	move_and_slide()
 	
 	if player:
 		if pbody.global_position.x > global_position.x:
-			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.flip_h = true
 			velocity.x = 50
 			$AnimatedSprite2D.play("default")
 		else:
-			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.flip_h = false
 			velocity.x = -50
 			$AnimatedSprite2D.play("default")
 	else:
