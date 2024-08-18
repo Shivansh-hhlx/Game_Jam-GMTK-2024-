@@ -15,11 +15,11 @@ func _process(delta):
 	
 	if player:
 		if pbody.global_position.x > global_position.x:
-			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.flip_h = !false
 			velocity.x = 50
 			$AnimatedSprite2D.play("default")
 		else:
-			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.flip_h = !true
 			velocity.x = -50
 			$AnimatedSprite2D.play("default")
 	else:
