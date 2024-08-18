@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqf4gjyf7l62k"]
+[gd_scene load_steps=9 format=3 uid="uid://bqf4gjyf7l62k"]
 
 [ext_resource type="Script" path="res://enemy/elephant_level.gd" id="1_nh0lu"]
 [ext_resource type="Texture2D" uid="uid://0ureqhc8f2fe" path="res://assets/tilemap/tilestiles.png" id="1_vy1ja"]
 [ext_resource type="PackedScene" uid="uid://c8rwg54l7k134" path="res://ui/hp_stam.tscn" id="2_hb6ot"]
 [ext_resource type="PackedScene" uid="uid://bntu7ghv7w3qo" path="res://player/character.tscn" id="2_qm3bb"]
 [ext_resource type="PackedScene" uid="uid://4acr1a2c5lox" path="res://enemy/elephant_boss.tscn" id="3_n48bn"]
-[ext_resource type="PackedScene" uid="uid://v56m8gjow0ae" path="res://enemy/enemy_ant.tscn" id="5_xw2gr"]
 [ext_resource type="PackedScene" uid="uid://bq7cc3s5qfbre" path="res://enemy/enemy_snake.tscn" id="7_jp8vm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l1mdj"]
@@ -98,14 +97,11 @@ position = Vector2(1550, 413)
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="EnemyParent" parent="Enemies" instance=ExtResource("5_xw2gr")]
-position = Vector2(209, 350)
+[node name="enemy_snake" parent="Enemies" instance=ExtResource("7_jp8vm")]
+position = Vector2(630, 281)
 
 [node name="Character" parent="." instance=ExtResource("2_qm3bb")]
 position = Vector2(450, 318)
 
 [node name="Camera2D" type="Camera2D" parent="Character"]
 metadata/_edit_lock_ = true
-
-[node name="enemy_snake" parent="." instance=ExtResource("7_jp8vm")]
-position = Vector2(989, 481)
