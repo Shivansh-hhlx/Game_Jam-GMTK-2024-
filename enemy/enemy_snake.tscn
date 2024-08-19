@@ -156,8 +156,7 @@ position = Vector2(11, -40)
 sprite_frames = SubResource("SpriteFrames_c766m")
 animation = &"attack"
 autoplay = "falling"
-frame = 6
-flip_h = true
+frame_progress = 0.618718
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
