@@ -159,6 +159,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oprky"]
 
 [node name="Character" type="CharacterBody2D"]
+disable_mode = 2
 collision_mask = 4
 script = ExtResource("1_ylbwe")
 
@@ -187,7 +188,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="killzoneEnd" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 0.7
 one_shot = true
 
 [node name="scalingUp" type="Timer" parent="."]
@@ -195,7 +196,13 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="dashGoing" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
 
 [connection signal="timeout" from="dashEnd" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="killzoneEnd" to="." method="_on_timer_2_timeout"]
 [connection signal="timeout" from="scalingUp" to="." method="_on_timer_3_timeout"]
+[connection signal="timeout" from="dashGoing" to="." method="_on_dash_going_timeout"]
