@@ -14,6 +14,9 @@ func _process(delta):
 		# Stop movement and play attack animation if RayCast2D is colliding
 		velocity = Vector2.ZERO
 		$AnimatedSprite2D.play("attack")
+	elif $RayCast2D2.is_colliding():
+		velocity = Vector2.ZERO
+		$AnimatedSprite2D.play("attack")
 	else:
 		if is_on_floor():
 			if fallen == 0:

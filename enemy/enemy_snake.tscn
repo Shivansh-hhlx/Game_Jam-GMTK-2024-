@@ -156,7 +156,8 @@ position = Vector2(11, -40)
 sprite_frames = SubResource("SpriteFrames_c766m")
 animation = &"attack"
 autoplay = "falling"
-frame_progress = 0.981013
+frame = 6
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
@@ -171,6 +172,10 @@ shape = SubResource("RectangleShape2D_6o3id")
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, 8)
 target_position = Vector2(-60, 0)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(0, 8)
+target_position = Vector2(80, 1)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
