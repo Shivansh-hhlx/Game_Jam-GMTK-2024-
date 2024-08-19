@@ -156,10 +156,10 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_eqnck"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oprky"]
 
 [node name="Character" type="CharacterBody2D"]
-collision_mask = 6
+collision_mask = 4
 script = ExtResource("1_ylbwe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -169,8 +169,7 @@ sprite_frames = SubResource("SpriteFrames_qiu57")
 animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
-shape = SubResource("CircleShape2D_eqnck")
+shape = SubResource("RectangleShape2D_oprky")
 
 [node name="Markers" type="Node2D" parent="."]
 
@@ -183,13 +182,20 @@ position = Vector2(-154, -106)
 [node name="Marker2D4" type="Marker2D" parent="Markers"]
 position = Vector2(-1, -109)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="dashEnd" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
 
-[node name="Timer2" type="Timer" parent="."]
+[node name="killzoneEnd" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[node name="scalingUp" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="dashEnd" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="killzoneEnd" to="." method="_on_timer_2_timeout"]
+[connection signal="timeout" from="scalingUp" to="." method="_on_timer_3_timeout"]
