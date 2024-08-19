@@ -156,7 +156,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_eqnck"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ox4f2"]
 
 [node name="Character" type="CharacterBody2D"]
 collision_mask = 6
@@ -169,7 +169,7 @@ sprite_frames = SubResource("SpriteFrames_qiu57")
 animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_eqnck")
+shape = SubResource("RectangleShape2D_ox4f2")
 
 [node name="Markers" type="Node2D" parent="."]
 

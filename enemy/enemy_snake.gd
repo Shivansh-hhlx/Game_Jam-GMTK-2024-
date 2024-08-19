@@ -14,7 +14,7 @@ func _process(delta):
 		if fallen == 0:
 			$AnimatedSprite2D.play("fallen")
 		velocity.y = 0
-	else:
+	elif !is_on_floor():
 		fallen = 0
 		$AnimatedSprite2D.play("falling")
 		if falling == 1:
@@ -43,10 +43,6 @@ func _process(delta):
 		$AnimatedSprite2D.stop()
 		velocity.x = 0
 	
-	
-	
-	
-
 
 func _on_area_2d_body_entered(body):
 	player = true
