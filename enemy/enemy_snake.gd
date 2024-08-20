@@ -8,15 +8,16 @@ var fallen = -1
 
 func _ready():
 	$AnimatedSprite2D.global_position.y += 40
-
 func _process(delta):
 	if $RayCast2D.is_colliding():
 		# Stop movement and play attack animation if RayCast2D is colliding
 		velocity = Vector2.ZERO
 		$AnimatedSprite2D.play("attack")
+		$Timer.start()
 	elif $RayCast2D2.is_colliding():
 		velocity = Vector2.ZERO
 		$AnimatedSprite2D.play("attack")
+		$Timer.start()
 	else:
 		if is_on_floor():
 			if fallen == 0:
@@ -59,3 +60,8 @@ func _on_area_2d_body_exited(body):
 func _on_animated_sprite_2d_animation_finished():
 	fallen += 1
 	$AnimatedSprite2D.global_position.y -= 40
+
+
+func _on_timer_timeout():
+	if $AnimatedSprite2D.animation == "attack":
+		Global.current_health -= 10
