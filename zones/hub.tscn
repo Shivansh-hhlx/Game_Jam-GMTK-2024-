@@ -116,13 +116,6 @@ texture = ExtResource("4_ndmif")
 flip_h = true
 metadata/_edit_lock_ = true
 
-[node name="Character" parent="." instance=ExtResource("2_fl780")]
-position = Vector2(-777, 135)
-scale = Vector2(1.5, 1.5)
-
-[node name="Camera2D" type="Camera2D" parent="Character"]
-metadata/_edit_lock_ = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HP_STAM" parent="CanvasLayer" instance=ExtResource("3_o6jrd")]
@@ -140,3 +133,8 @@ position = Vector2(-365, 61)
 scale = Vector2(2, 2)
 texture = ExtResource("4_ndmif")
 metadata/_edit_lock_ = true
+
+[node name="Character" parent="." instance=ExtResource("2_fl780")]
+position = Vector2(-1030, 184)
+
+[node name="Camera2D" type="Camera2D" parent="Character"]

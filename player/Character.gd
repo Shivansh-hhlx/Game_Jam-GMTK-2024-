@@ -35,10 +35,14 @@ var poise = 10
 var scaled_down = false
 var time_count = 0
 
+var attack_count = 0
+
+
 var killzone
 
 func _ready():
-	killzone = kill.instantiate()
+	killzone = kill.instantiate() as Area2D
+	killzone.global_position = $Markers/Marker2D5.global_position
 
 func _process(delta):
 	
@@ -51,6 +55,7 @@ func _process(delta):
 		velocity.y = -jump
 	if !is_on_floor():
 		velocity.y += gravity * delta
+		$AnimatedSprite2D.play("jump")
 	
 	velocity.x = direction * speed
 	
@@ -63,22 +68,27 @@ func _process(delta):
 		$dashEnd.start()
 		$killzoneEnd.start()
 		$dashGoing.start()
+		$AnimatedSprite2D.play("dash")
 	elif Input.is_action_pressed("dash") and is_on_floor():
 		if scaled_down:
 			speed = SMALL_RUNNING_SPEED
 		else:
 			speed = RUNNING_SPEED
+		$AnimatedSprite2D.play("run")
 	elif is_on_floor():
 		if scaled_down:
 			speed = SMALL_WALKING_SPEED
 		else:
 			speed = WALKING_SPEED
+		$AnimatedSprite2D.play("walking")
 	elif is_dashing == 0:
 		if scaled_down:
 			speed = SMALL_WALKING_SPEED
 		else:
 			speed = WALKING_SPEED
 	
+	if velocity == Vector2.ZERO:
+		$AnimatedSprite2D.play("idle")
 	
 	if direction < 0:
 		$AnimatedSprite2D.flip_h = true
@@ -91,11 +101,6 @@ func _process(delta):
 	if direction == 0:
 		var tween = create_tween()
 		tween.tween_property($Camera2D, "global_position", $Markers/Marker2D4.global_position, 2.25)
-	
-	if velocity.x != 0:
-		$AnimatedSprite2D.play("run")
-	else:
-		$AnimatedSprite2D.play("idle")
 
 	if !is_on_floor() and Input.is_action_just_pressed("attack"):
 		add_child(killzone)
@@ -126,6 +131,13 @@ func _process(delta):
 	
 	if($randomScale.time_left == 2):
 		notifyScaleChange.emit()
+		
+	
+	if is_on_floor() and Input.is_action_just_pressed("attack"):
+		$AnimatedSprite2D.play("full_attack")
+		add_child(killzone)
+		$killzoneEnd.start()
+	
 
 func _on_timer_timeout():
 	gravity = GRAVITY
@@ -143,8 +155,8 @@ func _on_timer_2_timeout():
 
 func _on_timer_3_timeout():
 	
-	scale.x += 0.5 * scaleFactor;
-	scale.y += 0.5 * scaleFactor;
+	scale.x += 0.25 * scaleFactor;
+	scale.y += 0.25 * scaleFactor;
 	if currentScale:
 		$Markers/Marker2D4.position.y += 25.0
 		$Markers/Marker2D2.position.y += 25.0
@@ -154,26 +166,22 @@ func _on_timer_3_timeout():
 		$Markers/Marker2D2.position.y -= 25.0
 		$Markers/Marker2D.position.y -=  25.0
 	
-	time_count+=1
-	
-	if time_count < 1:
-		$scalingUp.start()
-	else:
-		time_count = 0
-	
 	
 
 func _on_dash_going_timeout():
 	is_dashing = 0
 
 
-
-#func _on_random_scale_timeout():
-	#canScale = true
-	#
-	#var scaleTime: int = randi_range(10, 20)
-	#$randomScale.wait_time = scaleTime
-	#$randomScale.start()
-	#
-	#notifyScaleTime = scaleTime - 2
+func _on_random_scale_timeout():
+	Global.canScale = true
 	
+	var scaleTime: int = randi_range(10, 20)
+	$randomScale.wait_time = scaleTime
+	$randomScale.start()
+	
+	notifyScaleTime = scaleTime - 2
+	
+
+
+func _on_attacking_timeout():
+	attack_count -= 1
