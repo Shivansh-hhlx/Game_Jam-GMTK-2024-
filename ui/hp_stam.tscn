@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8rwg54l7k134"]
+[gd_scene load_steps=5 format=3 uid="uid://c8rwg54l7k134"]
 
 [ext_resource type="Texture2D" uid="uid://d3swkufl7l5c" path="res://assets/ui/hp bar/health_bar.png" id="1_l3c04"]
 [ext_resource type="Script" path="res://ui/hp_stam.gd" id="1_qscqh"]
 [ext_resource type="Texture2D" uid="uid://dycbgny8vm81h" path="res://assets/ui/stam bar/stamina_bar.png" id="2_b1uxu"]
+[ext_resource type="PackedScene" uid="uid://boeguiehejr8s" path="res://player/randomizer.tscn" id="4_d2ojo"]
 
 [node name="HP_STAM" type="Control"]
 layout_mode = 3
@@ -62,3 +63,14 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/separation = -4
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 52.0
+offset_right = 54.0
+offset_bottom = 75.0
+
+[node name="randomizer" parent="." instance=ExtResource("4_d2ojo")]
+
+[connection signal="notifyScaleChange" from="randomizer" to="." method="_on_randomizer_notify_scale_change"]

@@ -1,10 +1,14 @@
 extends CharacterBody2D
 
+signal notifyScaleChange
+
+
 var kill := preload("res://zones/enemy_kill_zone.tscn")
 
-var canScale: bool = true
+#var canScale: bool = true
 var currentScale: bool = false; # true for big, false for small
 
+var notifyScaleTime: int = 0
 
 var scaleFactor = 1;
 var scaleCount: int = 0;
@@ -100,7 +104,8 @@ func _process(delta):
 		$dashEnd.start()
 		$killzoneEnd.start()
 		
-	if Input.is_action_just_pressed("scale") and canScale:
+	if Global.canScale:
+		Global.canScale = false
 		if currentScale:
 			currentScale = false;
 			scaleFactor = 1;
@@ -118,7 +123,9 @@ func _process(delta):
 	else:
 		jump = BIG_JUMP_SPEED
 	move_and_slide()
-
+	
+	if($randomScale.time_left == 2):
+		notifyScaleChange.emit()
 
 func _on_timer_timeout():
 	gravity = GRAVITY
@@ -159,3 +166,14 @@ func _on_timer_3_timeout():
 func _on_dash_going_timeout():
 	is_dashing = 0
 
+
+
+#func _on_random_scale_timeout():
+	#canScale = true
+	#
+	#var scaleTime: int = randi_range(10, 20)
+	#$randomScale.wait_time = scaleTime
+	#$randomScale.start()
+	#
+	#notifyScaleTime = scaleTime - 2
+	
