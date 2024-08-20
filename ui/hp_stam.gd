@@ -33,3 +33,7 @@ func fill():
 		text_rect.texture = stam_image
 		text_rect.stretch_mode = TextureRect.STRETCH_KEEP
 		$MarginContainer/VBoxContainer/TextureRect2/MarginContainer/HSplitContainer.add_child(text_rect)
+
+
+func _on_randomizer_notify_scale_change(timeLeft):
+	$Label.text = str(timeLeft)
